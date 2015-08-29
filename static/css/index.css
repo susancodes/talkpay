@@ -45,6 +45,12 @@ b {
 	padding: 0;
 }
 
+#footer img{
+	margin-left: 5px;
+	text-align: center;
+	vertical-align: middle;
+}
+
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
     color: #fff;
     background-color: transparent;
