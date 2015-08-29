@@ -5,22 +5,76 @@
 	h3 {
 		margin-top: 50px;
 		margin-bottom: 20px;
+		font-size: 20px;
 	}
 	.form-group {
 		width: 500px;
 	}
 
-	img {
-		margin-top: 50px;
-		height: 250px;
+	#main_wrap img {
+		margin-top: 30px;
+		height: 230px;
 	}
+
+	.divide {
+		height: 50px;
+	}
+
+	#sidebar img {
+		border-radius: 150px;
+		height: 150px;
+		border: 3px solid #0077b5;
+		margin-bottom: 15px;
+		margin-top: -40px;
+		text-align: center;
+	}
+
+	#sidebar li {
+		list-style-type: none;
+		margin-left: -40px;
+		margin-bottom: 5px;
+
+	}
+
+
+	.name {
+		font-size:16px;
+	}
+
+
 </style>
 
-<br>
-<br>
+<div class='divide'></div>
 
-<center>
-<div class="container">
+
+<div id="main_wrap">
+	<div id="sidebar">
+		<img src="/static/img/logo_invert.png">
+		<br>
+		<ul>
+			<li><b class="name">Miss DevelopHer</b></li>
+			<li>Title: Software Engineer</li>
+			<li>Company: Google since 6/2015</li>
+			<li>Location: San Francisco, CA</li>
+		</ul>
+		<br>
+		<b>TalkPay Topics to Get You What You Deserve</b>
+		<br>
+		<br>
+	
+		<ul>
+			<li><a href="#">Salary Negotiation</a></li>
+			<li><a href="#">2015 Salary Averages</a></li>
+			<li><a href="#">Resume Tips</a></li>
+			<li><a href="#">5 Things Not to Do At an Interview</a></li>
+		</ul>
+
+
+
+	</div>
+	<div id="content">
+		<center>
+		
 			<center>
 				<img src="/static/img/logo_invert.png">
 			</center>
@@ -35,17 +89,20 @@
 
 			    <button class="btn btn-primary btn-lg" type="submit">Search</button>
 			</form>
-		</div>
-
-
-			<!-- SUSAN'S CHART BUTTON. DO NOT ERASE! -->
-
-			<div id="chart-div" style="height: 600px; width: 400px"></div>
-
 	
 
+					<!-- SUSAN'S CHART BUTTON. DO NOT ERASE! -->
+
+		<div id="chart-div" style="height: 600px; width: 400px"></div>
+
+		</div>
+		</center>
+	</div>
 </div>
-</center>
+
+
+
+
 
 
 
