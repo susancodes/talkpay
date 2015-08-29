@@ -181,14 +181,21 @@ def change_linkedin_query(uri, headers, body):
 
 linkedin.pre_request = change_linkedin_query
 
+@app.route('/searchpositions')
+def search_positions():
+
+    return render_template('salarysearch.html')
+
 
 @app.route('/processsearch.json')
 def process_search():
     """find title in scraped data."""
 
-    # title = request.args.get('title')
+    title = request.args.get('position')
 
-    title = "Computer programmers"
+    print "title: ", title
+
+    # title = "Computer programmers"
 
     entire_dict = get_title_and_salaries()
 

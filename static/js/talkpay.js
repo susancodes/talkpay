@@ -6,7 +6,6 @@ google.setOnLoadCallback(initialize);
 
 function initialize() {
 	// add event listener here after google chart initializes
-	debugger;
 	$('#chart-btn').on('click', drawChart);
 }
 
@@ -79,17 +78,14 @@ function drawChart() {
 
 		data.addColumn('string', 'Gender');
 		data.addColumn('number', 'Salary');
-		data.addColumn({type:'string', role:'annotation', calc: function(dt, row) {
-			var salary = dt.getValue(row, 2);
-			return {v: salary_diff, f: "$" + salary_diff.toString()};
-		}});
+		data.addColumn({type:'string', role:'annotation'});
 
 	var chart = new google.visualization.ColumnChart(document.getElementById('chart-div'));
 	
 	function drawInitialChart() {
 		data.addRows([
-			["Male", 15.49, 15.49],
-			["Female", 10.49, 10.49]
+			["Male", 15.49, "15.49"],
+			["Female", 10.49, "10.49"]
 		]);
 		chart.draw(data, options);
 		
@@ -102,7 +98,7 @@ function drawChart() {
 
 		data.removeRows(0, data.getNumberOfRows());
 		data.addRows([
-			["Male", 15.49, 15.49, 0, ""], ["Female", 10.49, 10.49, 5,"$5"]
+			["Male", 15.49, "15.49", 0, ""], ["Female", 10.49, "10.49", 5,"$5"]
 			]);
 
 		options.height = 600;
@@ -122,8 +118,12 @@ function drawChart() {
 
 // $('#another-chart-btn').on('click', reDrawChart);
 
-function getSalaryInfo() {
-	var url = '/processsearch.json?title=' + "Computer";
+function getSalaryInfo(evt) {
+
+	evt.preventDefault();
+
+	var url = '/processsearch.json?title=' + $("#position").val();
+	console.log(url);
 
 	$.get(url, function(data){
 		alert("getting an ajax call back");
