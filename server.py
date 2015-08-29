@@ -191,6 +191,7 @@ def change_linkedin_query(uri, headers, body):
 
 linkedin.pre_request = change_linkedin_query
 
+
 @app.route('/searchpositions')
 def search_positions():
 
@@ -201,13 +202,14 @@ def search_positions():
 def process_search():
     """find title in scraped data."""
 
-    title = request.args.get('position')
 
+    # title = request.args.get('position')
+
+    title = "Computer programmers"
     print "title: ", title
 
-    # title = "Computer programmers"
 
-    entire_dict = get_title_and_salaries()
+    entire_dict = scrape_data.get_title_and_salaries()
 
     if title in entire_dict:
         
@@ -215,7 +217,10 @@ def process_search():
                     'men': entire_dict[title][3],
                     'women': entire_dict[title][5]}
 
-        # print new_dict
+        print type(entire_dict[title][3])
+        print type(entire_dict[title][5])
+
+        print new_dict
 
         return jsonify(new_dict)
 
