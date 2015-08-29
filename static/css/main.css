@@ -7,7 +7,7 @@ body {
 }
 
 .jumbotron {
-	padding: 50px;
+	padding: 70px;
 	height: 500px;
 	position: relative;
 	background: url('/static/img/header.jpg');
@@ -67,11 +67,71 @@ body {
 
 
 .navbar-brand img {
-	height: 30px;
+	height: 25px;
 }
 
 .btn-primary {
     color: #fff;
     background-color: #0077b5;
     border-color: #2e6da4;
+}
+
+#footer {
+	text-align: left;
+	background-color: #333;
+	color: #666;
+	width: 100%;
+	max-width: 1000px;
+	height: 100px;
+	padding: 20px 50px 20px 50px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+
+#footer-body {
+	background-color: #333;
+	border-top: 1px solid #666;
+}
+
+#footer img {
+	height: 25px;
+	opacity: 0.3;
+	margin: 5px 8px 0 0;
+}
+
+#footer img:hover {
+	opacity: 1.0;
+}
+
+#footer a {
+	color: #666;
+	text-shadow: 1.5px 2px 3px rgba(0,0,0,0.2);
+}
+
+#footer a:hover {
+	color: #fff;
+}
+
+* {
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+.page-wrap {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: -50px; 
+  position: relative;
+}
+
+.page-wrap:after {
+  content: '';
+  display: block;
+}
+
+.site-footer, .page-wrap:after {
+  height: 50px; 
+
 }
