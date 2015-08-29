@@ -86,16 +86,25 @@ def process_user_info():
     location = request.form.get('form')
     gender = request.form.get('gender')
     industry = request.form.get('industry')
+
     salary = int(request.form.get('salary'))
+    company = request.form.get('company')
+    title = request.form.get('title')
+    start_date_month = request.form.get('start_date_month')
+    start_date_year = request.form.get('start_date_year')
+
 
     user = User.get_user_by_user_id(user_id)
     user.update_user_profile(first_name=first_name, last_name=last_name, headline=headline, location=location, gender=gender,
                              industry=industry)
     position = Position.get_position_by_user_id(user_id)
     if position:
-        position.update_position(salary=salary)
+
+        position.update_position(company=company, title=title, start_date_year=start_date_year, start_date_month=start_date_month,
+                                 salary=salary)
     else:
-        Position.create(user_id=user_id, salary=salary)
+        Position.create(user_id=user_id, company=company, title=title, start_date_year=start_date_year, start_date_month=start_date_month,
+                        salary=salary)
 
     flash ("Your profile has been updated")
     return render_template('search.html')
@@ -199,7 +208,7 @@ def process_search():
                     'men': entire_dict[title][3],
                     'women': entire_dict[title][5]}
 
-        print new_dict
+        # print new_dict
 
         return jsonify(new_dict)
 

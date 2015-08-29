@@ -92,15 +92,15 @@ class Position(db.Model):
 
 
     def update_position(self, company=None, start_date_month=None, start_date_year=None, title=None, salary=None):
-        if company:
+        if company != self.company:
             self.company = company
-        if start_date_month:
+        if start_date_month != self.start_date_month:
             self.start_date_month = start_date_month
-        if start_date_year:
+        if start_date_year != self.start_date_year:
             self.start_date_year = start_date_year
-        if title:
+        if title != self.title:
             self.title = title
-        if salary:
+        if salary != self.salary:
             self.salary = salary
         db.session.commit()
 
