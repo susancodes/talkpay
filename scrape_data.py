@@ -2,6 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 
 
+
+
 def get_bls_data():
 	"""Based on bls url, get data from soup"""
 
