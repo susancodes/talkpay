@@ -143,18 +143,19 @@ def authorized():
     if positions and positions.get('values', None):
         position_info = positions.get('values')[0]
         position_company = None
-        position_start_date = None
+        position_start_date_month = None
+        position_start_date_year = None
         position_title = None
         if position_info.get('company', None):
             position_company = position_info.get('company', None)['name']
         if position_info.get('startDate', None):
             position_start_date_month = position_info['startDate']['month']
             position_start_date_year = position_info['startDate']['year']
-            position_start_date = str(position_start_date_month) + " " + str(position_start_date_year)
         if position_info.get('title', None):
             position_title = position_info['title']
 
-        position = Position.create(user_id=user_id, company=position_company, start_date=position_start_date, title=position_title)
+        position = Position.create(user_id=user_id, company=position_company, start_date_month=position_start_date_month,
+                                   start_date_year=position_start_date_year, title=position_title)
 
 
     else:
