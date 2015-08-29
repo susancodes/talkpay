@@ -40,6 +40,14 @@ class User(db.Model):
         db.session.commit()
         return new_user
 
+    @classmethod
+    def get_user_by_linkedin_id(cls, id):
+        return cls.query.filter_by(linkedin_id=id).first()
+
+    @classmethod
+    def get_user_by_user_id(cls, id):
+        return cls.query.get(id)
+
     def update_user_profile(self, first_name=None, last_name=None, headline=None, industry=None, location=None, gender=None):
         if first_name != self.first_name:
             self.first_name = first_name
@@ -66,7 +74,7 @@ class Position(db.Model):
     position_id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
     company = db.Column(db.String)
-    start_date = db.Column(db.DATETIME)
+    start_date = db.Column(db.String)
     title = db.Column(db.String)
     salary = db.Column(db.Integer)
 
@@ -74,9 +82,10 @@ class Position(db.Model):
         return "<Position position_id=%s user_id=%s title=%s>" % (self.position_id, self.user_id, self.title)
     @classmethod
     def create(cls, user_id, company=None, start_date=None, title=None, salary=None):
-        new_position = cls(user_id=user_id, company=company, start_date=start_date, title=title, salary=salary)
+        new_position = cls(user_id=user_id, company=company, start_date=start_date, title=title)
         db.session.add(new_position)
         db.session.commit()
+
 
 
     def update_position(self, company=None, start_date=None, title=None, salary=None):

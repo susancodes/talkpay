@@ -31,16 +31,16 @@
 		      
 		          </ul>
 		          <ul class="nav navbar-nav navbar-right">
-		            {% if 'username' not in session %}
+		            {% if 'current_user' not in session %}
 		            <li><a href="/login">Log in</a></li>
 		            {% endif %}
-		            {% if 'username' in session %}
+		            {% if 'current_user' in session %}
 
 		            <li class="dropdown">
-		              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">user: <b>{{ username }}</b> <span class="caret"></span></a>
+		              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% if user is defined %}user: <b>{{ user.first_name }}{% endif %}</b> <span class="caret"></span></a>
 		              <ul class="dropdown-menu">
 		                <li><a href="#" data-toggle="modal" data-target="#createMap">Create New Map</a></li>
-		                <li><a href="/profile/{{ username }}">Profile Page</a></li>
+		                <li><a href="/profile/{{ session['current_user'] }}">Profile Page</a></li>
 		                <li><a href="/logout">Logout</a></li>
 		              </ul>
 		            </li>
