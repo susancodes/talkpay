@@ -239,6 +239,40 @@ def process_search():
 
         return jsonify(new_dict)
 
+@app.route('/twilio')
+def twilio():
+    """sends user texts with salary data based on user job title input"""
+
+    from_number = request.values.get('From')
+    if from_number in friends:
+        name = friends[from_number]
+    else:
+        name = "Monkey" #if we don't know name, use 'Monkey'
+    message = "Hello, {}!! Thanks for the message.".format(name)
+    resp = twiml.Response()
+    resp.message(message)
+    return str(resp)
+
+@app.route('/about')
+def about():
+    """renders the about template"""
+
+    return render_template('about.html')
+
+@app.route('/contact')
+def contact():
+    """renders the contact template"""
+
+    return render_template('contact.html')
+
+@app.route('/features')
+def features():
+    """renders the features template"""
+
+    return render_template('features.html')
+
+  
+
 
 
 
