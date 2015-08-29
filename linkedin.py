@@ -9,8 +9,10 @@ oauth = OAuth(app)
 
 linkedin = oauth.remote_app(
     'linkedin',
+
     consumer_key='CLIENT_ID',  # replace with you own Client ID
     consumer_secret='CLIENT_SECRET', # replace with your consumer_secret
+
 
     request_token_params={
         'scope': 'r_fullprofile', # replace with r_fullprofile
