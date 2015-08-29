@@ -15,3 +15,22 @@
 	background-color: #333;
 	border-top: 1px solid #666;
 }
+
+.jumbotron {
+	padding: 50px;
+	height: 500px;
+	position: relative;
+}
+
+.footer-links {
+	list-style-type: none;
+	border-left: 1px solid #eee;
+	margin: 0px;
+
+}
+
+.jumbotron-text {
+	text-align: justify;
+	vertical-align: middle;
+	margin: 0 auto;
+}
