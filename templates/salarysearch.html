@@ -41,6 +41,19 @@
 		font-size:16px;
 	}
 
+	#chart-result-msg {
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		z-index: 3;
+		text-align: center;
+	}
+
+	center {
+		left: -20px;
+	}
+
+
 
 </style>
 
@@ -92,26 +105,50 @@
 		<center>
 		
 			<center>
-				<img src="/static/img/logo_invert.png">
+				<img id="logo" src="/static/img/logo_invert.png">
 			</center>
+
+<br>
+
+			<button class="btn btn-primary btn-lg" type="submit" id="search-again" style="display: none" hidden>Search Again</button>
+
+<br>
+
+			<form id='position-search' class="form">
 	
 			<h3>Enter a job position to find a starting point to talk about your pay:</h3>
 
-			<form id='position-search' class="form">
 
 			    <div class="form-group">
 			    	<input type="text" id="position" class="form-control" name="position" value="Software Engineer">
 				</div>
 
-			    <button class="btn btn-primary btn-lg" type="submit">Search</button>
+				<div class="form-group">
+					<input type"text" id="current-salary" class="form-control" name="current-salary" value="60000">
+				</div>
+
+			    <button class="btn btn-primary btn-lg" type="submit" id="position-search">Search</button>
 			</form>
 	
 
-					<!-- SUSAN'S CHART BUTTON. DO NOT ERASE! -->
+<br>
+
+		<div class="container">
+			<row>
+				<div class="col-xs-12 col-md-4"></div>
+				<div class="col-xs-12 col-md-4">
+
+					<div id="chart-result-msg" hidden></div>
+
+				</div>
+				<div class="col-xs-12 col-md-4"></div>
+
+			</row>
+		</div>
 
 		<div id="chart-div" style="height: 600px; width: 400px"></div>
 
-		</div>
+
 		</center>
 	</div>
 </div>
