@@ -172,10 +172,13 @@ def change_linkedin_query(uri, headers, body):
 linkedin.pre_request = change_linkedin_query
 
 
-@app.route('/processsearch')
+@app.route('/processsearch.json')
 def process_search():
+    """find title in scraped data."""
 
-    title = request.args.get('title')
+    # title = request.args.get('title')
+
+    title = "Computer programmers"
 
     entire_dict = get_title_and_salaries()
 
@@ -188,6 +191,7 @@ def process_search():
         print new_dict
 
         return jsonify(new_dict)
+
 
 
 
