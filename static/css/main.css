@@ -152,3 +152,8 @@ body {
     /*width: 750px;*/
     padding: 0 20px;
 }
+
+#chart-result-msg {
+	font-size: 14px;
+	font-weight: bold;
+}

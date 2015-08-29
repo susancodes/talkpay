@@ -273,11 +273,35 @@ def contact():
 
     return render_template('contact.html')
 
-@app.route('/features')
-def features():
-    """renders the features template"""
+@app.route('/dashboard')
+def dashboard():
+    """renders the dashboard template"""
+    user_id = session['current_user']
+    first_name = request.form.get('first_name')
+    last_name = request.form.get('last_name')
+    headline = request.form.get('headline')
+    location = request.form.get('form')
+    industry = request.form.get('industry')
 
-    return render_template('features.html')
+    company = request.form.get('company')
+    title = request.form.get('title')
+    start_date_month = request.form.get('start_date_month')
+    start_date_year = request.form.get('start_date_year')
+
+
+    user = User.get_user_by_user_id(user_id)
+    user.update_user_profile(first_name=first_name, last_name=last_name, headline=headline, location=location,
+                             industry=industry)
+    position = Position.get_position_by_user_id(user_id)
+    if position:
+
+        position.update_position(company=company, title=title, start_date_year=start_date_year, start_date_month=start_date_month,
+                            )
+    else:
+        Position.create(user_id=user_id, company=company, title=title, start_date_year=start_date_year, start_date_month=start_date_month,
+                        )
+
+    return render_template('dashboard.html')
 
 
 

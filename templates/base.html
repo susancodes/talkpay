@@ -7,6 +7,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet'>
     <link href="/static/css/main.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/static/img/favicon.ico">
 
     <meta property="og:title" content="TalkPay"/>
     <meta property="og:description" content="You're worth more than you think"/>
@@ -47,7 +48,7 @@
                        aria-expanded="false">{% if user is defined %}user: <b>{{ user.first_name }}{% endif %}</b> <span
                             class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/profile/{{ session['current_user'] }}">Dashboard</a></li>
+                        <li><a href="/dashboard">Dashboard</a></li>
                         <li><a href="/logout">Logout</a></li>
                     </ul>
                 </li>
