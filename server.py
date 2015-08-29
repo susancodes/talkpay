@@ -14,7 +14,7 @@ app.secret_key = "developHER"
 def homepage():
 	"""Render home page for log-in."""
 
-	return render_template("base.html")
+	return render_template("index.html")
 
 
 

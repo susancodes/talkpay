@@ -1,0 +1,17 @@
+#footer {
+	text-align: left;
+	background-color: #333;
+	color: #666;
+	width: 100%;
+	max-width: 1000px;
+	height: 100px;
+	padding: 20px 50px 20px 50px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+
+#footer-body {
+	background-color: #333;
+	border-top: 1px solid #666;
+}
