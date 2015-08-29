@@ -73,18 +73,22 @@ function drawChart(chartData) {
 
 
 	var options = {
-		title: "Annual Salary for " + salaryObject.title ,
+		// title: "Annual Salary for " + salaryObject.title ,
 		legend: {position: 'none'},
-		height: 300,
-		width: 200,
+		axisTitlePosition: 'none',
+		top: 0,
+		height: 400,
+		width: 400,
 		animation: {
 					duration: 3000,
 					easing: 'out'},
 		isStacked: true,
-		vAxis: {title: 'Salary',
+		vAxis: {
+				// title: 'Salary',
 				format: 'currency',
+				textColor: '#fff',
 				gridlines: {color: 'transparent'}},
-		hAxis: {title: 'Gender'},
+		// hAxis: {title: 'Gender'},
 		bar: {groupWidth: "95%"}
 	};
 
@@ -120,8 +124,8 @@ function drawChart(chartData) {
 			["Male", men_salary_int, men_salary, 0, ""], ["Female", women_salary_int, women_salary, diff_salary_int, diff_salary]
 			]);
 
-		options.height = 500;
-		options.width = 333;
+		options.height = 700;
+		options.width = 500;
 
 		chart.draw(data, options)
 
