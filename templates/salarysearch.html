@@ -60,8 +60,9 @@
 			<li><b class="name">{{ user.first_name }} {{ user.last_name }}</b></li>
 			<li>{{ user.headline }}</li>
 			{% endif %}
-			{% if position is defined %}
-			<li>{{ position.industry }} </li>
+
+			<li>{{ user.industry }} </li>
+			{% if position %}
 			<li>Worked at {{ position.company }} since {{ position.start_date_month }}/{{ position.start_date_year }}</li>
 			{% endif %}
 			{% if user is defined %}
