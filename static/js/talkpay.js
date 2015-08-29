@@ -6,7 +6,7 @@ google.setOnLoadCallback(initialize);
 
 function initialize() {
 	// add event listener here after google chart initializes
-	$("#position-search").on('submit', getSalaryInfo);
+	$("#position-search").on('click', getSalaryInfo);
 }
 
 
@@ -19,8 +19,10 @@ function drawChart(chartData, herSalary) {
 	var menSalaryInt = salaryObject.men;
 	var womenSalaryInt = salaryObject.women;
 
-	var herSalary = "$" + herSalary;
-	var herSalaryInt = parseInt(herSalary);
+	var herSalaryInt = herSalary;
+	var herSalary = "$" + herSalaryInt;
+
+	console.log(typeof herSalaryInt)
 
 	console.log('menSalary ' + menSalary);
 	console.log('menSalaryInt ' + menSalaryInt);
@@ -43,10 +45,13 @@ function drawChart(chartData, herSalary) {
 	var options = {
 		// title: "Annual Salary for " + salaryObject.title ,
 		legend: {position: 'none'},
-		axisTitlePosition: 'none',
+		// axisTitlePosition: 'none',
 		top: 0,
-		height: 400,
-		width: 400,
+		height: 550,
+		chartArea: {
+			height: '50%',
+			width: '50%'
+		},
 		animation: {
 					duration: 3000,
 					easing: 'out'},
@@ -73,7 +78,7 @@ function drawChart(chartData, herSalary) {
 		]);
 		chart.draw(data, options);
 		
-	}
+	};
 
 	function reDrawChart() {
 
@@ -100,10 +105,29 @@ function drawChart(chartData, herSalary) {
 			["You", herSalaryInt, herSalary, currentDiffInt, currentDiff]
 			]);
 
-		options.height = 700;
-		options.width = 500;
+		options.chartArea.height = '90%';
+		options.chartArea.width = '90%';
 
 		chart.draw(data, options)
+
+		if (currentDiffInt < menSalaryInt){
+			$("form#position-search").fadeOut(3000);
+			$("img#logo").animate({
+				height: 50,
+				width: 50,
+			}, 3000);
+			// $("div#sidebar").animate({
+				// top: 100}, 400);
+			setTimeout(function(){showBadNews(currentDiff)}, 2000);
+		} else {
+			$("form#position-search").fadeOut(3000);
+			$("img#logo").animate({
+				height: 50,
+				width: 50,
+			}, 3000);
+			setTimeout(showGoodNews, 2000);
+			
+		}
 
 	};
 
@@ -128,6 +152,9 @@ function getSalaryInfo(evt) {
 		console.log(salaryObject);
 
 		var herSalary = $('#current-salary').val();
+		herSalary = parseInt(herSalary);
+		console.log('herSalary ' + herSalary);
+		console.log(typeof herSalary);
 
 		drawChart(salaryObject, herSalary);
 
@@ -143,18 +170,29 @@ function showErrorMessage() {
 
 
 function showGoodNews() {
-	$("#chart-result-msg").html("<p>Congratulations! You're actively part of the movement to close the pay gap!</p>
-								<p>We encourage you to share your success story with other women to empower them to join
-								the movement to get paid what they're worth.</p>");
-	$("#chart-result-msg").show();
+	$("#chart-result-msg").html("<p>Congratulations! You're actively part of the movement to close the pay gap!</p>" +
+								"<p>We encourage you to share your success story with other women to empower them to join" +
+								"the movement to get paid what they're worth.</p>");
+	$("#search-again").fadeIn(3000);
+	$("#chart-result-msg").fadeIn(3000);
 }
 
 
-function showBadNews() {
-	$("#chart-result-msg").html("<p>This is a perfect time to sharpen your negotiation skills and ask for a raise!</p>
-								<p>Reach out to other women in your industry and start #TalkPay.<p>");
-	$("#chart-result-msg").show();
+function showBadNews(currentDiff) {
+	$("#chart-result-msg").html("<p>This is a perfect time to sharpen your negotiation skills and ask for a raise!</p>" + 
+								"<p>You're currently making " + currentDiff + " less than the average men in your industry.<p>" +
+								"<p>Reach out to other women and start #TalkPay.<p>");
+	$("#search-again").fadeIn(3000);
+	$("#chart-result-msg").fadeIn(3000);
 }
+
+
+$('button#search-again').on('click', function (){
+	$("form#position-search").fadeIn(3000);
+	$("#search-again").fadeOut(3000);
+
+
+})
 
 
 
