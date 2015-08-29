@@ -58,8 +58,9 @@
 		<ul>
 			{% if user is defined %}
 			<li><b class="name">{{ user.first_name }} {{ user.last_name }}</b></li>
-			<li>{{ user.title }}</li>
-			<li>@{{ user.company }} since {{ user.start_date_month }}/{{ user.start_date_year }}</li>
+			<li>{{ user.headline }}</li>
+			<li>@{{ position.industry }} </li>
+			<li>Worked at last position since: {{ position.start_date_month }}/{{ position.start_date_year }}</li>
 			<li>{{ user.location }}</li>
 			{% else %}
 			<li>Title: Software Engineer</li>
