@@ -16,8 +16,8 @@ function drawChart(chartData) {
 	var men_salary = "$" + salaryObject.men;
 	var women_salary = "$" + salaryObject.women;
 
-	var men_salary_int = parseFloat(men_salary);
-	var women_salary_int = parseFloat(women_salary);
+	var men_salary_int = salaryObject.men;
+	var women_salary_int = salaryObject.women;
 
 	console.log('men_salary ' + men_salary);
 	console.log('men_salary_int ' + men_salary_int);
@@ -73,10 +73,10 @@ function drawChart(chartData) {
 
 
 	var options = {
-		title: "Salary Comparison by Gender",
+		title: "Annual Salary for " + salaryObject.title ,
 		legend: {position: 'none'},
-		height: 400,
-		width: 300,
+		height: 300,
+		width: 200,
 		animation: {
 					duration: 3000,
 					easing: 'out'},
@@ -120,8 +120,8 @@ function drawChart(chartData) {
 			["Male", men_salary_int, men_salary, 0, ""], ["Female", women_salary_int, women_salary, diff_salary_int, diff_salary]
 			]);
 
-		options.height = 600;
-		options.width = 450;
+		options.height = 500;
+		options.width = 333;
 
 		chart.draw(data, options)
 
@@ -143,11 +143,11 @@ function getSalaryInfo(evt) {
 
 	evt.preventDefault();
 
-	var url = '/processsearch.json?title=' + $("#position").val();
+	var url = '/processsearch.json?position=' + $("#position").val();
 	console.log(url);
 
 	$.get(url, function(data){
-		alert("getting an ajax call back");
+		console.log("AJAX IS WORKING");
 		var salaryObject = data;
 		console.log(salaryObject);
 
