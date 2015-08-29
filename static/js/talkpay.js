@@ -170,7 +170,7 @@ function showErrorMessage() {
 
 
 function showGoodNews() {
-	$("#chart-result-msg").html("<p><span class='response-msg'>Congratulations! You're part of the movement to close the pay gap!</span></p>" +
+	$("#chart-result-msg").html("<p>Congratulations! You're actively part of the movement to close the pay gap!</p>" +
 								"<p>We encourage you to share your success story with other women to empower them to join" +
 								"the movement to get paid what they're worth.</p>");
 	$("#search-again").fadeIn(3000);
@@ -179,7 +179,7 @@ function showGoodNews() {
 
 
 function showBadNews(currentDiff) {
-	$("#chart-result-msg").html("<p><span class='response-msg'>It's time to ask for a raise!</span></p>" + 
+	$("#chart-result-msg").html("<p>This is a perfect time to sharpen your negotiation skills and ask for a raise!</p>" + 
 								"<p>You're currently making " + currentDiff + " less than the average men in your industry.<p>" +
 								"<p>Reach out to other women and start #TalkPay.<p>");
 	$("#search-again").fadeIn(3000);
@@ -188,7 +188,7 @@ function showBadNews(currentDiff) {
 
 
 $('button#search-again').on('click', function (){
-	$("form#position-search").fadeIn(2000);
+	$("form#position-search").fadeIn(3000);
 	$("#search-again").fadeOut(3000);
 
 
