@@ -40,3 +40,7 @@ b {
 .navbar-brand img {
 	height: 25px;
 }
+
+#footer {
+	padding: 0;
+}
