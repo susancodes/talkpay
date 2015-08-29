@@ -1,0 +1,36 @@
+#footer {
+	text-align: left;
+	background-color: #333;
+	color: #666;
+	width: 100%;
+	max-width: 1000px;
+	height: 100px;
+	padding: 20px 50px 20px 50px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+
+#footer-body {
+	background-color: #333;
+	border-top: 1px solid #666;
+}
+
+.jumbotron {
+	padding: 50px;
+	height: 500px;
+	position: relative;
+}
+
+.footer-links {
+	list-style-type: none;
+	border-left: 1px solid #eee;
+	margin: 0px;
+
+}
+
+.jumbotron-text {
+	text-align: justify;
+	vertical-align: middle;
+	margin: 0 auto;
+}

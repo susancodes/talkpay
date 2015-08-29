@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TalkPay - Starting Conversations About Compensation Descrimination</title>
+
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+      	<link href="/static/css/main.css" rel="stylesheet">
+
+	</head>
+	<body>
+
+		<div class="page-wrap">
+			<nav class="navbar navbar-default navbar-fixed-top">
+		      <div class="container">
+		        <div class="navbar-header">
+		          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+		            <span class="sr-only">Toggle navigation</span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		          </button>
+		          <a class="navbar-brand" href="/">TalkPay</a>
+		        </div>
+		        <div id="navbar" class="navbar-collapse collapse">
+		          <ul class="nav navbar-nav">
+		            <li><a href="/#about">About</a></li>
+		            <li><a href="/#features">Features</a></li>
+		            <li><a href="/contact">Contact</a></li>
+		      
+		          </ul>
+		          <ul class="nav navbar-nav navbar-right">
+		            {% if 'username' not in session %}
+		            <li><a href="#" data-toggle="modal" data-target="#myModal">Log in or Sign Up</a></li>
+		            {% endif %}
+		            {% if 'username' in session %}
+
+		            <li class="dropdown">
+		              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">user: <b>{{ username }}</b> <span class="caret"></span></a>
+		              <ul class="dropdown-menu">
+		                <li><a href="#" data-toggle="modal" data-target="#createMap">Create New Map</a></li>
+		                <li><a href="/profile/{{ username }}">Profile Page</a></li>
+		                <li><a href="/logout">Logout</a></li>
+		              </ul>
+		            </li>
+
+		            {% endif %}
+		          </ul>
+		        </div>
+		      </div>
+		    </nav>
+
+
+	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+		  {% block body %}
+		      BODY OF PAGE GOES HERE VIA INHERITANCE
+		  {% endblock %}
+	</div>
+</div>
+<!-- <footer class="site-footer">
+  I'm the Sticky Footer.
+</footer> -->
+
+
+		<div class="footer">
+			<row>
+				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+					© TalkPay
+					<br>
+					<a href="http://www.github.com/" target="_blank"><img src="/static/img/github.png"></a>
+					<a href="https://www.linkedin.com/" target="_blank"><img src="/static/img/linkedin.png"></a>
+					<a href="http://www.twitter.com/" target="_blank"><img src="/static/img/twitter.png"></a>
+				</div>
+				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+					<ul class="footer-links">
+						<li><a href="#">About</a></li>
+						<br>
+						<li><a href="#">Contact</a></li>
+						<br>
+						<li><a href="#" target="_blank">Blog</a></li>
+					</ul>
+				</div>
+			</row>
+		</div>
+
+
+
+
+	</body>
+</html>
