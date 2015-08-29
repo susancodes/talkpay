@@ -6,12 +6,24 @@ google.setOnLoadCallback(initialize);
 
 function initialize() {
 	// add event listener here after google chart initializes
-	$('#chart-btn').on('click', drawChart);
+	$("#position-search").on('submit', getSalaryInfo);
 }
 
 
-function drawChart() {
-	// var salaryList = chartData;
+function drawChart(chartData) {
+	var salaryObject = chartData;
+
+	var men_salary = "$" + salaryObject.men;
+	var women_salary = "$" + salaryObject.women;
+
+	var men_salary_int = parseFloat(men_salary);
+	var women_salary_int = parseFloat(women_salary);
+
+	console.log('men_salary ' + men_salary);
+	console.log('men_salary_int ' + men_salary_int);
+	console.log('women_salary ' + women_salary);
+	console.log('women_salary_int ' + women_salary_int);
+
 
 	// var data = google.visualization.arrayToDataTable([
  //        ["Gender", "Salary", {role: 'annotation'}, 
@@ -84,8 +96,8 @@ function drawChart() {
 	
 	function drawInitialChart() {
 		data.addRows([
-			["Male", 15.49, "15.49"],
-			["Female", 10.49, "10.49"]
+			["Male", men_salary_int, men_salary],
+			["Female", women_salary_int, women_salary]
 		]);
 		chart.draw(data, options);
 		
@@ -93,12 +105,19 @@ function drawChart() {
 
 	function reDrawChart() {
 
+		var diff_salary_int = (men_salary_int - women_salary_int);
+		var diff_salary = "$" + diff_salary_int
+
+		console.log("diff_salary" + diff_salary);
+		console.log("diff_salary_int" + diff_salary_int);
+
+
 		data.addColumn('number', 'Salary Difference');
 		data.addColumn({type: 'string', role: 'annotation'});
 
 		data.removeRows(0, data.getNumberOfRows());
 		data.addRows([
-			["Male", 15.49, "15.49", 0, ""], ["Female", 10.49, "10.49", 5,"$5"]
+			["Male", men_salary_int, men_salary, 0, ""], ["Female", women_salary_int, women_salary, diff_salary_int, diff_salary]
 			]);
 
 		options.height = 600;
@@ -118,6 +137,8 @@ function drawChart() {
 
 // $('#another-chart-btn').on('click', reDrawChart);
 
+
+
 function getSalaryInfo(evt) {
 
 	evt.preventDefault();
@@ -127,9 +148,10 @@ function getSalaryInfo(evt) {
 
 	$.get(url, function(data){
 		alert("getting an ajax call back");
-		var salaryList = data;
-		console.log(salaryList);
+		var salaryObject = data;
+		console.log(salaryObject);
 
+		drawChart(salaryObject);
 
 
 	})
