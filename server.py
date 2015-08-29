@@ -40,9 +40,8 @@ def index():
     user = None
     if user_id:
         user = User.get_user_by_user_id(user_id)
-        positions = Position.get_positions_by_user_id(user_id)
 
-    return render_template('index.html', user=user, positions=positions)
+    return render_template('index.html', user=user)
     # if 'linkedin_token' in session:
     #     return render_template('dashboard.html')
     # return redirect(url_for('login'))
@@ -89,7 +88,13 @@ def process_user_info():
 
     user = User.get_user_by_user_id(user_id)
     user.update_user_profile(first_name=first_name, last_name=last_name, headline=headline, location=location, gender=gender,
-                             industry=industry, salary=salary)
+                             industry=industry)
+    position = Position.get_position_by_user_id(user_id)
+    if position:
+        position.update_position(salary=salary)
+    else:
+        Position.create(user_id=user_id, salary=salary)
+
     flash ("Your profile has been updated")
     return render_template('search.html')
 
@@ -131,7 +136,6 @@ def authorized():
     user_id = user.user_id
     session['current_user'] = user_id
     positions = user_data.get('positions', None)
-
     if positions and positions.get('values', None):
         position_info = positions.get('values')[0]
         position_company = None
@@ -146,9 +150,12 @@ def authorized():
         if position_info.get('title', None):
             position_title = position_info['title']
 
-        Position.create(user_id=user_id, company=position_company, start_date=position_start_date, title=position_title)
+        position = Position.create(user_id=user_id, company=position_company, start_date=position_start_date, title=position_title)
 
-    return render_template('dashboard.html', user=user)
+    else:
+        position = None
+
+    return render_template('dashboard.html', user=user, position=position)
 
 
 @linkedin.tokengetter
