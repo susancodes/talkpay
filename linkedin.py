@@ -1,5 +1,6 @@
-from flask import Flask, redirect, url_for, session, request, jsonify
+from flask import Flask, redirect, url_for, session, request, jsonify, render_template
 from flask_oauthlib.client import OAuth
+import os
 
 
 app = Flask(__name__)
@@ -10,12 +11,12 @@ oauth = OAuth(app)
 linkedin = oauth.remote_app(
     'linkedin',
 
-    consumer_key='CLIENT_ID',  # replace with you own Client ID
-    consumer_secret='CLIENT_SECRET', # replace with your consumer_secret
+    consumer_key=os.environ['CLIENT_ID'],  # replace with you own Client ID
+    consumer_secret=os.environ['CLIENT_SECRET'], # replace with your consumer_secret
 
 
     request_token_params={
-        'scope': 'r_fullprofile', # replace with r_fullprofile
+        'scope': 'r_basicprofile', # replace with r_fullprofile
         'state': 'RandomString',
     },
     base_url='https://api.linkedin.com/v1/',
@@ -29,7 +30,7 @@ linkedin = oauth.remote_app(
 @app.route('/')
 def index():
     if 'linkedin_token' in session:
-        me = linkedin.get('people/~:(id,positions,location,industry,public-profile-url)?format=json')
+        me = linkedin.get('people/~:(id,formatted-name,headline,positions,location,industry,specialties,public-profile-url)?format=json')
         return jsonify(me.data)
     return redirect(url_for('login'))
 
@@ -54,7 +55,7 @@ def authorized():
             request.args['error_description']
         )
     session['linkedin_token'] = (resp['access_token'], '')
-    me = linkedin.get('people/~')
+    me = linkedin.get('people/~:(id,formatted-name,headline,positions,location,industry,specialties,public-profile-url)?format=json')
     return jsonify(me.data)
 
 
