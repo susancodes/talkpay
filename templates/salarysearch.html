@@ -49,13 +49,23 @@
 
 <div id="main_wrap">
 	<div id="sidebar">
+		{% if user is defined %}
+		<img src="{{ user.profile_pic }}">
+		{% else %}
 		<img src="/static/img/logo_invert.png">
+		{% endif %}
 		<br>
 		<ul>
-			<li><b class="name">Miss DevelopHer</b></li>
+			{% if user is defined %}
+			<li><b class="name">{{ user.first_name }} {{ user.last_name }}</b></li>
+			<li>{{ user.title }}</li>
+			<li>@{{ user.company }} since {{ user.start_date_month }}/{{ user.start_date_year }}</li>
+			<li>{{ user.location }}</li>
+			{% else %}
 			<li>Title: Software Engineer</li>
 			<li>Company: Google since 6/2015</li>
 			<li>Location: San Francisco, CA</li>
+			{% endif %}
 		</ul>
 		<br>
 		<b>TalkPay Topics to Get You What You Deserve</b>
