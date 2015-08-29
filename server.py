@@ -67,6 +67,7 @@ TWILIO_NUMBER = os.environ['TWILIO_NUMBER']
 @app.route('/login')
 def login():
     if 'linkedin_token' in session:
+        print session.get('linkedin_token', None), "this is the current token"
         print session.get('curent_user', None), "this is current user in session"
         return render_template('dashboard.html')
     return linkedin.authorize(callback=url_for('authorized', _external=True))
