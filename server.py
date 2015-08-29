@@ -203,10 +203,12 @@ linkedin.pre_request = change_linkedin_query
 @app.route('/search-position')
 def search_positions():
     user_id = session.get('current_user')
+
     user = User.get_user_by_user_id(user_id)
+    position = Position.get_position_by_user_id(user_id)
 
 
-    return render_template('salarysearch.html', user=user)
+    return render_template('salarysearch.html', user=user, position=position)
     # return render_template('test.html')
 
 
