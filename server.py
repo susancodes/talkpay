@@ -203,7 +203,8 @@ def process_search():
     """find title in scraped data."""
 
 
-    # title = request.args.get('position')
+    position = request.args.get('position')
+    print 'position', position
 
     title = "Computer programmers"
     print "title: ", title
@@ -217,10 +218,10 @@ def process_search():
                     'men': entire_dict[title][3],
                     'women': entire_dict[title][5]}
 
-        print type(entire_dict[title][3])
-        print type(entire_dict[title][5])
+        # print type(entire_dict[title][3])
+        # print type(entire_dict[title][5])
 
-        print new_dict
+        # print new_dict
 
         return jsonify(new_dict)
 
