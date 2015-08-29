@@ -107,7 +107,7 @@ def process_user_info():
                         salary=salary)
 
     flash ("Your profile has been updated")
-    return render_template('search.html')
+    return render_template('salarysearch.html')
 
 @app.route('/login/authorized')
 def authorized():
