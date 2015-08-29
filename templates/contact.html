@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<link href="/static/css/index.css" rel="stylesheet">
+
+<style>
+	body {
+		color: white;
+		margin-top: 100px;	
+	}
+
+	.navbar {
+		background-color: #333;
+		border-bottom: 1px solid #666;
+	}
+
+	h2 {
+		font-size: 24px;
+		text-shadow: 3px 3px 3px rgba(0,0,0,0.2);
+	}
+
+	row img {
+		height: 30px;
+		margin-right: 10px;
+		opacity: 0.3;
+	}
+
+	img:hover {
+		opacity: 1.0;
+	}
+
+
+</style>
+
+
+
+<div class="container">
+	<h1>Contact the TalkPay Team</h1>
+
+	<hr>
+	<row>
+		<div class="col-sm-6 col-md-6">
+			<h2>Katherine Wu</h2>
+			
+				<a href="http://www.github.com/"><img src="/static/img/github.png"></a>
+				<a href="http://www.linkedin.com/in/"><img src="/static/img/linkedin.png"></a>
+				<a href="http://www.twitter.com/"><img src="/static/img/twitter.png"></a>
+			
+
+			<h2>Lauren Ortencio</h2>
+			
+				<a href="http://www.github.com/laurenor"><img src="/static/img/github.png"></a>
+				<a href="http://www.linkedin.com/in/laurenortencio"><img src="/static/img/linkedin.png"></a>
+				<a href="http://www.twitter.com/LOrtencio"><img src="/static/img/twitter.png"></a>
+		</div>
+
+		<div class="col-sm-6 col-md-6">
+			<h2>Peggy Zheng</h2>
+
+				<a href="http://www.github.com/susancodes/talkpay"><img src="/static/img/github.png"></a>
+				<a href="http://www.linkedin.com/in/"><img src="/static/img/linkedin.png"></a>
+				<a href="http://www.twitter.com/"><img src="/static/img/twitter.png"></a>
+
+
+			<h2>Susan Chin</h2>
+			
+				<a href="http://www.github.com/susancodes"><img src="/static/img/github.png"></a>
+				<a href="http://www.linkedin.com/in/"><img src="/static/img/linkedin.png"></a>
+				<a href="http://www.twitter.com/susancodes"><img src="/static/img/twitter.png"></a>
+		</div>
+	</row>
+
+</div>
+<br>
+<br>
+
+<div id="footer-body">
+	<div id="footer">
+		<br>
+		<center>
+			<p>Get Social with ©TalkPay</p>
+		<a href="http://www.github.com/susancodes/talkpay"><img src="/static/img/github.png"></a>
+		<a href="http://www.linkedin.com/in/"><img src="/static/img/linkedin.png"></a>
+		<a href="http://www.twitter.com/LOrtencio"><img src="/static/img/twitter.png"></a>
+	</center>
+	</div>
+</div>
+
+
+
+
+{% endblock %}
