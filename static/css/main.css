@@ -9,7 +9,8 @@ body {
 
 .jumbotron {
 	padding: 70px 70px 0 70px;
-	height: 500px;
+	min-height: 500px;
+	height: 100%;
 	position: relative;
 	background: url('/static/img/header.jpg');
 	background-size: cover;
