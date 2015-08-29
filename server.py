@@ -192,10 +192,11 @@ def change_linkedin_query(uri, headers, body):
 linkedin.pre_request = change_linkedin_query
 
 
-@app.route('/searchpositions')
+@app.route('/process-user-info')
 def search_positions():
 
     return render_template('salarysearch.html')
+    # return render_template('test.html')
 
 
 @app.route('/processsearch.json')

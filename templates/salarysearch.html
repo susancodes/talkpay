@@ -1,36 +1,52 @@
 {% extends 'base.html' %}
 {% block body %}
 
+<style>
+	h3 {
+		margin-top: 50px;
+		margin-bottom: 20px;
+	}
+	.form-group {
+		width: 500px;
+	}
+
+	img {
+		margin-top: 50px;
+		height: 250px;
+	}
+</style>
+
 <br>
 <br>
 
+<center>
 <div class="container">
-	<div class="row">
-		<div class="col-md-6">
-			<h2>Search for a position to see salary information:</h2>
+			<center>
+				<img src="/static/img/logo_invert.png">
+			</center>
+	
+			<h3>Enter a job position to find a starting point to talk about your pay:</h3>
 
 			<form id='position-search' class="form">
 
 			    <div class="form-group">
-			    	<input type="text" id="position" class="form-control" name="position">
+			    	<input type="text" id="position" class="form-control" name="position" value="Software Engineer">
 				</div>
 
-			    <input type="submit" value="Search">
+			    <button class="btn btn-primary btn-lg" type="submit">Search</button>
 			</form>
 		</div>
-	</div>
 
-	<div class="row">
-		<div class="col-md-6">
 
 			<!-- SUSAN'S CHART BUTTON. DO NOT ERASE! -->
 
 			<div id="chart-div" style="height: 600px; width: 400px"></div>
 
-		</div>
+	
 
-	</div>
 </div>
+</center>
+
 
 
 {% endblock %}
