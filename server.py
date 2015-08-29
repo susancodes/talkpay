@@ -119,7 +119,7 @@ def authorized():
         )
     session['linkedin_token'] = (resp['access_token'], '')
 
-    me = linkedin.get('people/~:(id,first-name,last-name,headline,positions,location,industry,specialties,public-profile-url)?format=json')
+    me = linkedin.get('people/~:(id,first-name,last-name,headline,picture-url,positions,location,industry,specialties,public-profile-url)?format=json')
     user_data = me.data
     print "user data: ", user_data
 
@@ -129,6 +129,8 @@ def authorized():
     headline = user_data.get('headline', None)
     industry = user_data.get('industry', None)
     location = user_data.get('location', None)
+    profile_pic = user_data.get('pictureUrl', None)
+    location_name = None
     if location:
         location_name = location['name']
 
@@ -140,7 +142,8 @@ def authorized():
                     linkedin_id=id,
                     headline=headline,
                     industry=industry,
-                    location=location_name
+                    location=location_name,
+                    profile_pic=profile_pic
                     )
 
     else:
@@ -205,10 +208,10 @@ def process_search():
 
 
     position = request.args.get('position')
-    print 'position', position
+    # print 'position', position
 
     title = "Computer programmers"
-    print "title: ", title
+    # print "title: ", title
 
 
     entire_dict = scrape_data.get_title_and_salaries()
