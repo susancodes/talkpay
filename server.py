@@ -107,6 +107,8 @@ def authorized():
 
     me = linkedin.get('people/~:(id,first-name,last-name,headline,positions,location,industry,specialties,public-profile-url)?format=json')
     user_data = me.data
+    print "user data: ", user_data
+
     first_name = user_data.get('firstName', None)
     last_name = user_data.get('lastName', None)
     id = user_data.get('id', None)
@@ -148,9 +150,9 @@ def authorized():
         if position_info.get('title', None):
             position_title = position_info['title']
 
-        Position.create(user_id=user_id, company=position_company, start_date=position_start_date, title=position_title)
+        position = Position.create(user_id=user_id, company=position_company, start_date=position_start_date, title=position_title)
 
-    return render_template('dashboard.html', user=user)
+    return render_template('dashboard.html', user=user, position=position)
 
 
 @linkedin.tokengetter
