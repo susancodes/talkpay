@@ -240,23 +240,23 @@ def process_search():
 
         return jsonify(new_dict)
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def twilio():
     """sends user texts with salary data based on user job title input"""
 
 
-    if (body == "software engineer"):
-        message = "The average wage of male software engineers is $103,000, whilst the average way for female software engineers \
+    if (request.values.get('Body') == "software engineer"):
+        message = "The average wage of male software engineers is $103,000, whilst the average wage for female software engineers \
         doing the same job is $93000!  Bridge the gap and negotiate for $103,000 or more!"
     else:
         message = "That is not a valid job title." 
 
     from_number = request.values.get('From')
-    if from_number in friends:
-        name = friends[from_number]
-    else:
-        name = "Monkey" #if we don't know name, use 'Monkey'
-    message = "Hello, {}!! Thanks for the message.".format(name)
+    # if from_number in friends:
+    #     name = friends[from_number]
+    # else:
+    #     name = "Monkey" #if we don't know name, use 'Monkey'
+    # message = "Hello, {}!! Thanks for the message.".format(name)
     resp = twiml.Response()
     resp.message(message)
     return str(resp)
