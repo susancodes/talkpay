@@ -1,19 +1,5 @@
-#footer {
-	text-align: left;
-	background-color: #333;
-	color: #666;
-	width: 100%;
-	max-width: 1000px;
-	height: 100px;
-	padding: 20px 50px 20px 50px;
-	margin-right: auto;
-	margin-left: auto;
-}
-
-
-#footer-body {
-	background-color: #333;
-	border-top: 1px solid #666;
+body {
+	/*font-family: 'Roboto', sans-serif;*/
 }
 
 .jumbotron {
@@ -22,15 +8,25 @@
 	position: relative;
 }
 
-.footer-links {
+.footer li {
 	list-style-type: none;
-	border-left: 1px solid #eee;
-	margin: 0px;
+	display: inline;
+}
 
+.social-footer {
+	margin-bottom: -10px;
 }
 
 .jumbotron-text {
 	text-align: justify;
 	vertical-align: middle;
 	margin: 0 auto;
+}
+
+.navbar {
+	background-color: transparent;
+}
+
+.navbar-brand img {
+	height: 25px;
 }

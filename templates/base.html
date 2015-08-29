@@ -4,6 +4,7 @@
 		<title>TalkPay - Starting Conversations About Compensation Descrimination</title>
 
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+		<link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet'>
       	<link href="/static/css/main.css" rel="stylesheet">
 
 	</head>
@@ -19,6 +20,7 @@
 		            <span class="icon-bar"></span>
 		            <span class="icon-bar"></span>
 		          </button>
+		          <a class="navbar-brand" href="/"><img src="/static/img/logo.png"></a>
 		          <a class="navbar-brand" href="/">TalkPay</a>
 		        </div>
 		        <div id="navbar" class="navbar-collapse collapse">
@@ -30,7 +32,7 @@
 		          </ul>
 		          <ul class="nav navbar-nav navbar-right">
 		            {% if 'username' not in session %}
-		            <li><a href="#" data-toggle="modal" data-target="#myModal">Log in or Sign Up</a></li>
+		            <li><a href="#" data-toggle="modal" data-target="#myModal">Log in</a></li>
 		            {% endif %}
 		            {% if 'username' in session %}
 
@@ -65,24 +67,12 @@
 
 
 		<div class="footer">
-			<row>
-				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+				<div class="social-footer">
 					© TalkPay
-					<br>
 					<a href="http://www.github.com/" target="_blank"><img src="/static/img/github.png"></a>
-					<a href="https://www.linkedin.com/" target="_blank"><img src="/static/img/linkedin.png"></a>
+		    		<a href="https://www.linkedin.com/" target="_blank"><img src="/static/img/linkedin.png"></a>
 					<a href="http://www.twitter.com/" target="_blank"><img src="/static/img/twitter.png"></a>
 				</div>
-				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
-					<ul class="footer-links">
-						<li><a href="#">About</a></li>
-						<br>
-						<li><a href="#">Contact</a></li>
-						<br>
-						<li><a href="#" target="_blank">Blog</a></li>
-					</ul>
-				</div>
-			</row>
 		</div>
 
 
