@@ -78,6 +78,7 @@ def authorized():
     user_data = me.data
     first_name = user_data.get('firstName', None)
     last_name = user_data.get('lastName', None)
+    id = user_data.get('id', None)
     headline = user_data.get('headline', None)
     industry = user_data.get('industry', None)
     location = user_data.get('location', None)
@@ -99,11 +100,13 @@ def authorized():
 
     user = User.create(first_name=first_name,
                 last_name=last_name,
+                linkedin_id=id,
                 headline=headline,
                 industry=industry,
-                location=location
+                location=location_name
                 )
     user_id = user.user_id
+    Position.update_position()
 
 
     return render_template('dashboard.html')

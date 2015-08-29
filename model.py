@@ -13,6 +13,7 @@ class User(db.Model):
     __tablename__ = 'users'
 
     user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    linkedin_id = db.Column(db.String)
     first_name = db.Column(db.String(64))
     last_name = db.Column(db.String(64))
     headline = db.Column(db.String(64))
@@ -33,8 +34,8 @@ class User(db.Model):
         return "<User user_id=%s name=%s>" % (self.user_id, self.first_name + self.last_name)
 
     @classmethod
-    def create(cls, first_name, last_name, headline=None, industry=None, location=None, gender=None):
-        new_user = cls(first_name=first_name, last_name=last_name, headline=headline, industry=industry, location=location, gender=gender)
+    def create(cls, linkedin_id, first_name, last_name, headline=None, industry=None, location=None, gender=None):
+        new_user = cls(linkedin_id=linkedin_id, first_name=first_name, last_name=last_name, headline=headline, industry=industry, location=location, gender=gender)
         db.session.add(new_user)
         db.session.commit()
         return new_user
@@ -71,6 +72,12 @@ class Position(db.Model):
 
     def __repr__(self):
         return "<Position position_id=%s user_id=%s title=%s>" % (self.position_id, self.user_id, self.title)
+    @classmethod
+    def create(cls, user_id, company=None, start_date=None, title=None, salary=None):
+        new_position = cls(user_id=user_id, company=company, start_date=start_date, title=title, salary=salary)
+        db.session.add(new_position)
+        db.session.commit()
+
 
     def update_position(self, company=None, start_date=None, title=None, salary=None):
         if company != self.company:
