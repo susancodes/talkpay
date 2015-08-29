@@ -81,27 +81,29 @@ class Position(db.Model):
     def __repr__(self):
         return "<Position position_id=%s user_id=%s title=%s>" % (self.position_id, self.user_id, self.title)
     @classmethod
+
     def create(cls, user_id, company=None, start_date=None, title=None, salary=None):
         new_position = cls(user_id=user_id, company=company, start_date=start_date, title=title)
         db.session.add(new_position)
         db.session.commit()
+        return new_position
 
 
 
     def update_position(self, company=None, start_date=None, title=None, salary=None):
-        if company != self.company:
+        if company:
             self.company = company
-        if start_date != self.start_date:
+        if start_date:
             self.start_date = start_date
-        if title != self.title:
+        if title:
             self.title = title
-        if salary != self.salary:
+        if salary:
             self.salary = salary
         db.session.commit()
 
     @classmethod
-    def get_positions_by_user_id(cls, user_id):
-        return cls.query.filter_by(user_id=user_id).all()
+    def get_position_by_user_id(cls, user_id):
+        return cls.query.filter_by(user_id=user_id).first()
 
 
 ##############################################################################
