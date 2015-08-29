@@ -113,8 +113,8 @@ function drawChart(chartData, herSalary) {
 		if (currentDiffInt < menSalaryInt){
 			$("form#position-search").fadeOut(3000);
 			$("img#logo").animate({
-				height: 50,
-				width: 50,
+				height: 100,
+				width: 100,
 			}, 3000);
 			// $("div#sidebar").animate({
 				// top: 100}, 400);
