@@ -1,65 +1,117 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>TalkPay - Starting Conversations About Compensation Descrimination</title>
+<head>
+    <title>TalkPay - Starting Conversations About Compensation Descrimination</title>
 
-		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
-		<link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet'>
-      	<link href="/static/css/main.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet'>
+    <link href="/static/css/main.css" rel="stylesheet">
 
-	</head>
-	<body>
-			<nav class="navbar navbar-default navbar-fixed-top">
-		      <div class="container">
-		        <div class="navbar-header">
-		          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-		            <span class="sr-only">Toggle navigation</span>
-		            <span class="icon-bar"></span>
-		            <span class="icon-bar"></span>
-		            <span class="icon-bar"></span>
-		          </button>
-		          <a class="navbar-brand" href="/"><img src="/static/img/logo.png"></a>
-		          <a class="navbar-brand" href="/">TalkPay</a>
-		        </div>
-		        <div id="navbar" class="navbar-collapse collapse">
-		          <ul class="nav navbar-nav">
-		            <li><a href="/#about">About</a></li>
-		            <li><a href="/#features">Features</a></li>
-		            <li><a href="/contact">Contact</a></li>
-		      
-		          </ul>
-		          <ul class="nav navbar-nav navbar-right">
-		            {% if 'current_user' not in session %}
-		            <li><a href="/login">Log in</a></li>
-		            {% endif %}
-		            {% if 'current_user' in session %}
+    <meta property="og:title" content="TalkPay"/>
+    <meta property="og:description" content="You're worth more than you think"/>
+    <meta property="og:url" content="http://127.0.0.1:5000/"/>
+    <meta property="og:image" content="http://example.com/foo.jpg"/>
 
-		            <li class="dropdown">
-		              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% if user is defined %}user: <b>{{ user.first_name }}{% endif %}</b> <span class="caret"></span></a>
-		              <ul class="dropdown-menu">
-		                <li><a href="/profile/{{ session['current_user'] }}">Dashboard</a></li>
-		                <li><a href="/logout">Logout</a></li>
-		              </ul>
-		            </li>
+    <script type="text/javascript" src="//platform.linkedin.com/in.js">
+        api_key: 751
+        wioeccr9zif
+        authorize: true
+        onLoad: onLinkedInLoad
+    </script>
 
-		            {% endif %}
-		          </ul>
-		        </div>
-		      </div>
-		    </nav>
+    <script type="text/javascript">
+
+        // Setup an event listener to make an API call once auth is complete
+        function onLinkedInLoad() {
+            IN.Event.on(IN, "auth", shareContent);
+        }
+
+        // Handle the successful return from the API call
+        function onSuccess(data) {
+            console.log(data);
+        }
+
+        // Handle an error response from the API call
+        function onError(error) {
+            console.log(error);
+        }
+
+        // Use the API call wrapper to share content on LinkedIn
+        function shareContent() {
+
+            // Build the JSON payload containing the content to be shared
+            var payload = {
+                "comment": "Check out developer.linkedin.com! http://linkd.in/1FC2PyG",
+                "visibility": {
+                    "code": "anyone"
+                }
+            };
+
+            IN.API.Raw("/people/~/shares?format=json")
+                    .method("POST")
+                    .body(JSON.stringify(payload))
+                    .result(onSuccess)
+                    .error(onError);
+        }
+
+    </script>
+
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"><img src="/static/img/logo.png"></a>
+            <a class="navbar-brand" href="/">TalkPay</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#features">Features</a></li>
+                <li><a href="/contact">Contact</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if 'current_user' not in session %}
+                <li><a href="/login">Log in</a></li>
+                {% endif %}
+                {% if 'current_user' in session %}
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">{% if user is defined %}user: <b>{{ user.first_name }}{% endif %}</b> <span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/profile/{{ session['current_user'] }}">Dashboard</a></li>
+                        <li><a href="/logout">Logout</a></li>
+                    </ul>
+                </li>
+
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
 
 
-		<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-		<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
-		  {% block body %}
-		      BODY OF PAGE GOES HERE VIA INHERITANCE
-		  {% endblock %}
+{% block body %}
+BODY OF PAGE GOES HERE VIA INHERITANCE
+{% endblock %}
 <!-- </div>
 </div> -->
-	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-	<script src="../static/js/talkpay.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script src="../static/js/talkpay.js"></script>
 
-	</body>
+</body>
 </html>

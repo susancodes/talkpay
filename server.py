@@ -173,7 +173,12 @@ def authorized():
     else:
         position = None
 
-    return render_template('dashboard.html', user=user, position=position)
+    # return render_template('test.html', user=user, position=position)
+    return redirect(url_for('search_positions'))
+
+@app.route('/test')
+def test():
+    return render_template('test.html')
 
 
 @linkedin.tokengetter
@@ -195,7 +200,7 @@ def change_linkedin_query(uri, headers, body):
 linkedin.pre_request = change_linkedin_query
 
 
-@app.route('/process-user-info')
+@app.route('/search-position')
 def search_positions():
 
     return render_template('salarysearch.html')
