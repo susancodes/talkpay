@@ -10,19 +10,24 @@ function initialize() {
 }
 
 
-function drawChart(chartData) {
+function drawChart(chartData, herSalary) {
 	var salaryObject = chartData;
 
-	var men_salary = "$" + salaryObject.men;
-	var women_salary = "$" + salaryObject.women;
+	var menSalary = "$" + salaryObject.men;
+	var womenSalary = "$" + salaryObject.women;
 
-	var men_salary_int = salaryObject.men;
-	var women_salary_int = salaryObject.women;
+	var menSalaryInt = salaryObject.men;
+	var womenSalaryInt = salaryObject.women;
 
-	console.log('men_salary ' + men_salary);
-	console.log('men_salary_int ' + men_salary_int);
-	console.log('women_salary ' + women_salary);
-	console.log('women_salary_int ' + women_salary_int);
+	var herSalary = "$" + herSalary;
+	var herSalaryInt = parseInt(herSalary);
+
+	console.log('menSalary ' + menSalary);
+	console.log('menSalaryInt ' + menSalaryInt);
+	console.log('womenSalary ' + womenSalary);
+	console.log('womenSalaryInt ' + womenSalaryInt);
+	console.log('herSalary ' + womenSalary);
+	console.log('herSalaryInt' + womenSalaryInt);
 
 
 	// var data = google.visualization.arrayToDataTable([
@@ -34,43 +39,6 @@ function drawChart(chartData) {
  //      ]);
 
 	var data = new google.visualization.DataTable();
-
-
-
-	// var view = new google.visualization.DataView(data);
-	// view.setColumns([{
-	// 	label: 'Gender',
-	// 	type: 'string',}, 
-
-	// 	{label: 'Salary',
-	// 	type: 'number',
-	// 	calc: function (dt, row) {
-	// 		var salary = dt.getValue(row, 1);
-	// 		return parseInt(salary);
-	// 	}}, 
-
-	// 		{role: 'annotation',
-	// 		type: 'string',
-	// 		calc: function (dt, row) {
-	// 			var salary = dt.getValue(row, 1);
-	// 			return {v: salary, f: salary.toString()};
-	// 		}}, 
-		
-	// 	{label: 'Salary Difference',
-	// 	type: 'number',
-	// 	calc: function (dt, row) {
-	// 	var salary_diff = dt.getValue(row, 2);
-	// 	return parseInt(salary_diff);
-	// 	}}, 
-
-	// 		{role: 'annotation',
-	// 		type: 'string',
-	// 		calc: function (dt, row) {
-	// 			var salary_diff = dt.getValue(row, 2);
-	// 			return {v: salary_diff, f:salary_diff.toString()};
-	// 		}
-	// 	}]);
-
 
 	var options = {
 		// title: "Annual Salary for " + salaryObject.title ,
@@ -100,8 +68,8 @@ function drawChart(chartData) {
 	
 	function drawInitialChart() {
 		data.addRows([
-			["Male", men_salary_int, men_salary],
-			["Female", women_salary_int, women_salary]
+			["Male", menSalaryInt, menSalary],
+			["Female", womenSalaryInt, womenSalary]
 		]);
 		chart.draw(data, options);
 		
@@ -109,11 +77,17 @@ function drawChart(chartData) {
 
 	function reDrawChart() {
 
-		var diff_salary_int = (men_salary_int - women_salary_int);
-		var diff_salary = "$" + diff_salary_int
+		var diffSalaryInt = (menSalaryInt - womenSalaryInt);
+		var diffSalary = "$" + diffSalaryInt
 
-		console.log("diff_salary" + diff_salary);
-		console.log("diff_salary_int" + diff_salary_int);
+		var currentDiffInt = (menSalaryInt - herSalaryInt);
+		var currentDiff = "$" + currentDiffInt;
+
+		console.log("diffSalary " + diffSalary);
+		console.log("diffSalaryInt " + diffSalaryInt);
+
+		console.log("currentDiff " + currentDiff);
+		console.log("currentDiffInt" + currentDiffInt);
 
 
 		data.addColumn('number', 'Salary Difference');
@@ -121,7 +95,9 @@ function drawChart(chartData) {
 
 		data.removeRows(0, data.getNumberOfRows());
 		data.addRows([
-			["Male", men_salary_int, men_salary, 0, ""], ["Female", women_salary_int, women_salary, diff_salary_int, diff_salary]
+			["Male", menSalaryInt, menSalary, 0, ""], 
+			["Female", womenSalaryInt, womenSalary, diffSalaryInt, diffSalary],
+			["You", herSalaryInt, herSalary, currentDiffInt, currentDiff]
 			]);
 
 		options.height = 700;
@@ -139,10 +115,6 @@ function drawChart(chartData) {
 
 
 
-// $('#another-chart-btn').on('click', reDrawChart);
-
-
-
 function getSalaryInfo(evt) {
 
 	evt.preventDefault();
@@ -155,7 +127,9 @@ function getSalaryInfo(evt) {
 		var salaryObject = data;
 		console.log(salaryObject);
 
-		drawChart(salaryObject);
+		var herSalary = $('#current-salary').val();
+
+		drawChart(salaryObject, herSalary);
 
 
 	})
@@ -163,8 +137,24 @@ function getSalaryInfo(evt) {
 
 
 function showErrorMessage() {
-	$("#flash-message").html("<p>Your search returned no results.<p>");
+	$("#flash-message").html("<p>Your search returned no results.</p>");
 	$("#flash-message").show();
 }
+
+
+function showGoodNews() {
+	$("#chart-result-msg").html("<p>Congratulations! You're actively part of the movement to close the pay gap!</p>
+								<p>We encourage you to share your success story with other women to empower them to join
+								the movement to get paid what they're worth.</p>");
+	$("#chart-result-msg").show();
+}
+
+
+function showBadNews() {
+	$("#chart-result-msg").html("<p>This is a perfect time to sharpen your negotiation skills and ask for a raise!</p>
+								<p>Reach out to other women in your industry and start #TalkPay.<p>");
+	$("#chart-result-msg").show();
+}
+
 
 

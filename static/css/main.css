@@ -132,3 +132,23 @@ body {
 .profile-text {
 	text-align: left;
 }
+
+#main_wrap { 
+    display: table;
+    text-align: left;
+}
+
+#sidebar {
+	border-right: 1px solid #ccc;
+    background-color: #eee;
+    width: 250px;
+    display: table-cell;
+    padding: 0 35px;
+}
+
+#content {
+    display: table-cell;
+    /*width: 100%;*/
+    width: 750px;
+    padding: 0 20px;
+}
