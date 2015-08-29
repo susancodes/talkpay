@@ -89,7 +89,6 @@ body {
 	margin-right: auto;
 	margin-left: auto;
 	vertical-align: top;
-	border-top: 1px solid #666;
 }
 
 
@@ -97,6 +96,7 @@ body {
 	background-color: #333;
 	border-top: 1px solid #666;
 	vertical-align: top;
+	width: 100%;
 }
 
 #footer img {

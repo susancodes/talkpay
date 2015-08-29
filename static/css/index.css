@@ -21,8 +21,8 @@ b {
 
 
 .navbar-default .navbar-nav>li>a:hover {
-	text-decoration: none;
-	color: #0077b5;
+	text-decoration: underline;
+	color: #fff;
 }
 
 .navbar-default .navbar-brand {
@@ -32,7 +32,7 @@ b {
 }
 
 .navbar-default a.navbar-brand:hover {
-	color: #0077b5;
+	color: #fff;
 	text-shadow: 2px 2px 3px rgba(0,0,0,0.3);
 }
 
@@ -43,4 +43,15 @@ b {
 
 #footer {
 	padding: 0;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    color: #fff;
+    background-color: transparent;
+}
+
+.navbar-nav .dropdown-menu {
+	background-color: #0077B5;
+	font-weight: bold;
+	color: white;
 }
