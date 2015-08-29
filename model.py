@@ -19,8 +19,7 @@ class User(db.Model):
     headline = db.Column(db.String(64))
     industry = db.Column(db.String(64))
     location = db.Column(db.String(64))
-    gender = db.Column(db.String)
-
+    profile_pic = db.Column(db.String)
 
 
     # todo: need to decide if only allows for facebook login, if so, we could take out the password part
@@ -34,8 +33,9 @@ class User(db.Model):
         return "<User user_id=%s name=%s>" % (self.user_id, self.first_name + self.last_name)
 
     @classmethod
-    def create(cls, linkedin_id, first_name, last_name, headline=None, industry=None, location=None, gender=None):
-        new_user = cls(linkedin_id=linkedin_id, first_name=first_name, last_name=last_name, headline=headline, industry=industry, location=location, gender=gender)
+    def create(cls, linkedin_id, first_name, last_name, headline=None, industry=None, location=None, profile_pic=None):
+        new_user = cls(linkedin_id=linkedin_id, first_name=first_name, last_name=last_name, headline=headline,
+                       industry=industry, location=location, profile_pic=profile_pic)
         db.session.add(new_user)
         db.session.commit()
         return new_user
@@ -48,7 +48,7 @@ class User(db.Model):
     def get_user_by_user_id(cls, id):
         return cls.query.get(id)
 
-    def update_user_profile(self, first_name=None, last_name=None, headline=None, industry=None, location=None, gender=None):
+    def update_user_profile(self, first_name=None, last_name=None, headline=None, industry=None, location=None, profile_pic=profile_pic):
         if first_name != self.first_name:
             self.first_name = first_name
         if last_name != self.last_name:
@@ -59,8 +59,8 @@ class User(db.Model):
             self.industry = industry
         if location != self.location:
             self.location = location
-        if gender != self.gender:
-            self.gender = gender
+        if profile_pic != self.profile_pic:
+            self.profile_pic = profile_pic
 
         db.session.commit()
 
