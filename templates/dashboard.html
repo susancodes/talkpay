@@ -54,9 +54,38 @@
 			<div class="form-group">
 		    	<label>Current salary:<input type="text" class="form-control" name="salary" placeholder="ex. 60000" required> </label>
 		    </div>
+<!-- 		    <div class="form-group">
+		    	<label>Start date:<input type="text" class="form-control" name="start_date" value="{{ position.start_date_month}}" required></label>
+		    </div> -->
 		    <div class="form-group">
-		    	<label>Start date:<input type="text" class="form-control" name="start_date" value="{{ position.start_date}}" required></label>
+		    	<label>Start date:
+		    		<select  name="start_date_month" value="{{ position.start_date_month }}" required>
+					  <option value="1">1</option>
+					  <option value="2">2</option>
+					  <option value="3">3</option>
+					  <option value="4">4</option>
+					  <option value="1">5</option>
+					  <option value="2">6</option>
+					  <option value="3">7</option>
+					  <option value="4">8</option>
+					  <option value="1">9</option>
+					  <option value="2">10</option>
+					  <option value="3">11</option>
+					  <option value="4">12</option>
+					</select>
+					
+
+
+					<select name="start_date_year" value="{{ position.start_date_year }}"required>
+					  <option value="2015">2015</option>
+					  <option value="2014">2014</option>
+					  <option value="2013">2013</option>
+					  <option value="2012">2012</option>
+					  <option value="2011">2011</option>
+					</select>
+		    	</label>
 		    </div>
+
 		    {% else %}
 		    <div class="form-group">
 		    	<label>Title:<input type="text" class="form-control" name="title" required></label>
@@ -68,7 +97,32 @@
 		    	<label>Current salary:<input type="text" class="form-control" name="salary" placeholder="ex. 60000" required> </label>
 		    </div>
 		    <div class="form-group">
-		    	<label>Start date:<input type="text" class="form-control" name="start_date"  required> </label>
+		    	<label>Start date:
+		    		<select  name="start_date_month" value="{{ position.start_date_month }}" required>
+					  <option value="1">1</option>
+					  <option value="2">2</option>
+					  <option value="3">3</option>
+					  <option value="4">4</option>
+					  <option value="1">5</option>
+					  <option value="2">6</option>
+					  <option value="3">7</option>
+					  <option value="4">8</option>
+					  <option value="1">9</option>
+					  <option value="2">10</option>
+					  <option value="3">11</option>
+					  <option value="4">12</option>
+					</select>
+
+
+
+					<select name="start_date_year" value="{{ position.start_date_year }}"required>
+					  <option value="2015">2015</option>
+					  <option value="2014">2014</option>
+					  <option value="2013">2013</option>
+					  <option value="2012">2012</option>
+					  <option value="2011">2011</option>
+					</select>
+		    	</label>
 		    </div>
 		    {% endif %}
 

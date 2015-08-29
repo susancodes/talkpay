@@ -74,7 +74,8 @@ class Position(db.Model):
     position_id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
     company = db.Column(db.String)
-    start_date = db.Column(db.String)
+    start_date_month = db.Column(db.Integer)
+    start_date_year = db.Column(db.Integer)
     title = db.Column(db.String)
     salary = db.Column(db.Integer)
 
@@ -82,19 +83,21 @@ class Position(db.Model):
         return "<Position position_id=%s user_id=%s title=%s>" % (self.position_id, self.user_id, self.title)
     @classmethod
 
-    def create(cls, user_id, company=None, start_date=None, title=None, salary=None):
-        new_position = cls(user_id=user_id, company=company, start_date=start_date, title=title)
+    def create(cls, user_id, company=None, start_date_month=None, start_date_year=None, title=None, salary=None):
+        new_position = cls(user_id=user_id, company=company, start_date_month=start_date_month, start_date_year=start_date_year, title=title)
         db.session.add(new_position)
         db.session.commit()
         return new_position
 
 
 
-    def update_position(self, company=None, start_date=None, title=None, salary=None):
+    def update_position(self, company=None, start_date_month=None, start_date_year=None, title=None, salary=None):
         if company:
             self.company = company
-        if start_date:
-            self.start_date = start_date
+        if start_date_month:
+            self.start_date_month = start_date_month
+        if start_date_year:
+            self.start_date_year = start_date_year
         if title:
             self.title = title
         if salary:
