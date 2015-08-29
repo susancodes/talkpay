@@ -66,7 +66,7 @@ def get_title_and_salaries():
 	results = dict(zip(title, track))
 	return  results
 
-print get_title_and_salaries()
+get_title_and_salaries()
 
 
 
