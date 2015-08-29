@@ -1,5 +1,6 @@
 body {
 	font-family: 'Open Sans', sans-serif;
+	margin-bottom: -30px;
 }
 
 .jumbotron h1 {
@@ -7,11 +8,12 @@ body {
 }
 
 .jumbotron {
-	padding: 70px;
+	padding: 70px 70px 0 70px;
 	height: 500px;
 	position: relative;
 	background: url('/static/img/header.jpg');
 	background-size: cover;
+	margin-bottom: 0;
 }
 
 .footer li {
@@ -86,12 +88,15 @@ body {
 	padding: 20px 50px 20px 50px;
 	margin-right: auto;
 	margin-left: auto;
+	vertical-align: top;
+	border-top: 1px solid #666;
 }
 
 
 #footer-body {
 	background-color: #333;
 	border-top: 1px solid #666;
+	vertical-align: top;
 }
 
 #footer img {
@@ -111,27 +116,4 @@ body {
 
 #footer a:hover {
 	color: #fff;
-}
-
-* {
-  margin: 0;
-}
-html, body {
-  height: 100%;
-}
-.page-wrap {
-  min-height: 100%;
-  /* equal to footer height */
-  margin-bottom: -50px; 
-  position: relative;
-}
-
-.page-wrap:after {
-  content: '';
-  display: block;
-}
-
-.site-footer, .page-wrap:after {
-  height: 50px; 
-
 }
