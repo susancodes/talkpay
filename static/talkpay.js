@@ -14,14 +14,17 @@ function initialize() {
 function drawChart() {
 	// var salaryList = chartData;
 
-	var data = google.visualization.arrayToDataTable([
-        ["Gender", "Salary", {role: 'annotation'}, 
-        		"Salary Difference", {role: 'annotation'}, 
-        		{ role: "style" } ],
-        ["Male", 15.49, "15.49", 0, "0", "blue"],
-        ["Female", 10.49, "10.49", 5, "5", "pink"],
-        ["Both", 13.30, "13.30", 0, "0", "green"]
-      ]);
+	// var data = google.visualization.arrayToDataTable([
+ //        ["Gender", "Salary", {role: 'annotation'}, 
+ //        		"Salary Difference", {role: 'annotation'}, 
+ //        		{ role: "style" } ],
+ //        ["Male", 15.49, "15.49", 0, "0", "blue"],
+ //        ["Female", 10.49, "10.49", 5, "5", "pink"]
+ //      ]);
+
+	var data = new google.visualization.DataTable();
+
+
 
 	// var view = new google.visualization.DataView(data);
 	// view.setColumns([{
@@ -60,18 +63,62 @@ function drawChart() {
 
 	var options = {
 		title: "Salary Comparison by Gender",
-		height: 600,
-		width: 400,
-		// animation: {startup: true,
-		// 			duration: 2000,
-		// 			easing: 'out'},
+		legend: {position: 'none'},
+		height: 400,
+		width: 300,
+		animation: {
+					duration: 3000,
+					easing: 'out'},
 		isStacked: true,
-		vAxis: {title: 'Salary'},
+		vAxis: {title: 'Salary',
+				format: 'currency',
+				gridlines: {color: 'transparent'}},
 		hAxis: {title: 'Gender'},
 		bar: {groupWidth: "95%"}
 	};
 
+		data.addColumn('string', 'Gender');
+		data.addColumn('number', 'Salary');
+		data.addColumn({type:'string', role:'annotation'});
+
 	var chart = new google.visualization.ColumnChart(document.getElementById('chart-div'));
-	chart.draw(data, options);
+	
+	function drawInitialChart() {
+		data.addRows([
+			["Male", 15.49, "$15.49"],
+			["Female", 10.49, "$10.49"]
+		]);
+		chart.draw(data, options);
+		
+	}
+
+	function reDrawChart() {
+
+		data.addColumn('number', 'Salary Difference');
+		data.addColumn({type: 'string', role: 'annotation'});
+
+		data.removeRows(0, data.getNumberOfRows());
+		data.addRows([
+			["Male", 15.49, "$15.49", 0, ""], ["Female", 10.49, "$10.49", 5,"$5"]
+			]);
+
+		options.height = 600;
+		options.width = 450;
+
+		chart.draw(data, options)
+
+	};
+
+
+	drawInitialChart();
+	setTimeout(reDrawChart, 500);
 
 };
+
+
+
+// $('#another-chart-btn').on('click', reDrawChart);
+
+
+
+
