@@ -142,13 +142,13 @@ def authorized():
         if position_info.get('startDate', None):
             position_start_date_month = position_info['startDate']['month']
             position_start_date_year = position_info['startDate']['year']
-            position_start_date = position_start_date_month + " " + position_start_date_year
+            position_start_date = str(position_start_date_month) + " " + str(position_start_date_year)
         if position_info.get('title', None):
             position_title = position_info['title']
 
         Position.create(user_id=user_id, company=position_company, start_date=position_start_date, title=position_title)
 
-    return render_template('dashboard.html')
+    return render_template('dashboard.html', user=user)
 
 
 @linkedin.tokengetter

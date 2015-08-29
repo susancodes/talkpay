@@ -1,0 +1,42 @@
+h1 {
+		margin-top: -20px;
+		text-shadow: 2px 2px 3px rgba(0,0,0,0.3);
+	}
+
+b {
+	color: #0077B5;
+}
+
+
+.navbar {
+	/*background-color: #0077b5;*/
+	background-color: transparent;
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: #fff;
+	font-size: 14px;
+	text-shadow: 2px 2px 3px rgba(0,0,0,0.3);
+}
+
+
+.navbar-default .navbar-nav>li>a:hover {
+	text-decoration: none;
+	color: #0077b5;
+}
+
+.navbar-default .navbar-brand {
+	color: #fff;
+	font-size: 20px;
+	text-shadow: 2px 2px 3px rgba(0,0,0,0.3);
+}
+
+.navbar-default a.navbar-brand:hover {
+	color: #0077b5;
+	text-shadow: 2px 2px 3px rgba(0,0,0,0.3);
+}
+
+
+.navbar-brand img {
+	height: 25px;
+}

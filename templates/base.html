@@ -9,7 +9,7 @@
 
 	</head>
 	<body>
-
+		<nav>
 		<div class="page-wrap">
 			<nav class="navbar navbar-default navbar-fixed-top">
 		      <div class="container">
@@ -39,8 +39,7 @@
 		            <li class="dropdown">
 		              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% if user is defined %}user: <b>{{ user.first_name }}{% endif %}</b> <span class="caret"></span></a>
 		              <ul class="dropdown-menu">
-		                <li><a href="#" data-toggle="modal" data-target="#createMap">Create New Map</a></li>
-		                <li><a href="/profile/{{ session['current_user'] }}">Profile Page</a></li>
+		                <li><a href="/profile/{{ session['current_user'] }}">Dashboard</a></li>
 		                <li><a href="/logout">Logout</a></li>
 		              </ul>
 		            </li>
