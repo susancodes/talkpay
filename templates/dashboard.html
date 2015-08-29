@@ -1,6 +1,40 @@
 {% extends 'base.html' %}
 {% block body %}
 
+<style>
+	body {
+		margin-top: 50px;
+	}
+</style>
+
+<h1>{{ user.first_name }} {{ user.last_name }}</h1>
+
+<h2>Personal Information</h2>
+	<form action='/process-user-info' method='post' name='process-user-info'>
+	    <label>
+	    <input type="text" name="first_name" value="{{ user.first_name }}" required> </label>
+	    <br>
+	    <label>
+	    <input type="text" name="last_name" value="{{ user.last_name }}" required> </label>
+	    <br>
+	    <input type="text" name="headline" value="{{ user.headline }}" required> </label>
+	    <br>
+	    <input type="text" name="industry" value="{{ user.industry }}" required> </label>
+	    <br>
+	    <input type="text" name="location" value="{{ user.location }}" required> </label>
+	    <br>
+	   	<input type="text" name="gender" placeholder="Gender" required> </label>
+	    <br>
+	    <input type="text" name="salary" placeholder="Current Salary" required> </label>
+	    <br>
+	    <input type="submit" value="Update Info">
+	</form>
+
+	<span id="login"></span>
+	<span id="register"></span>
+
+</div>
+
 
 
 {% endblock %}

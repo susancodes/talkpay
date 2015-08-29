@@ -130,7 +130,7 @@ def authorized():
 
         Position.create(user_id=user_id, company=position_company, start_date=position_start_date, title=position_title)
 
-    return render_template('dashboard.html')
+    return render_template('dashboard.html', user=user)
 
 
 @linkedin.tokengetter
