@@ -36,9 +36,10 @@ linkedin = oauth.remote_app(
 
 @app.route('/')
 def index():
-    if 'linkedin_token' in session:
-        return render_template('dashboard.html')
-    return redirect(url_for('login'))
+    return render_template('index.html')
+    # if 'linkedin_token' in session:
+    #     return render_template('dashboard.html')
+    # return redirect(url_for('login'))
 
 
 app.secret_key = "developHER"
@@ -58,6 +59,8 @@ TWILIO_NUMBER = os.environ['TWILIO_NUMBER']
 
 @app.route('/login')
 def login():
+    if 'linkedin_token' in session:
+        return render_template('dashboard.html')
     return linkedin.authorize(callback=url_for('authorized', _external=True))
 
 @app.route('/logout')
