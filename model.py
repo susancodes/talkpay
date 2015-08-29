@@ -99,6 +99,9 @@ class Position(db.Model):
             self.salary = salary
         db.session.commit()
 
+    @classmethod
+    def get_positions_by_user_id(cls, user_id):
+        return cls.query.filter_by(user_id=user_id).all()
 
 
 ##############################################################################

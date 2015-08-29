@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, session, request, jsonify, render_template
+from flask import Flask, redirect, url_for, session, request, jsonify, render_template, flash
 from flask_oauthlib.client import OAuth
 import os
 from flask_debugtoolbar import DebugToolbarExtension
@@ -40,8 +40,9 @@ def index():
     user = None
     if user_id:
         user = User.get_user_by_user_id(user_id)
+        positions = Position.get_positions_by_user_id(user_id)
 
-    return render_template('index.html', user=user)
+    return render_template('index.html', user=user, positions=positions)
     # if 'linkedin_token' in session:
     #     return render_template('dashboard.html')
     # return redirect(url_for('login'))
@@ -74,6 +75,23 @@ def logout():
     session.pop('linkedin_token', None)
     session.pop('current_user', None)
     return render_template("index.html")
+
+@app.route('/process-user-info', methods=['POST'])
+def process_user_info():
+    user_id = session['current_user']
+    first_name = request.form.get('first_name')
+    last_name = request.form.get('last_name')
+    headline = request.form.get('headline')
+    location = request.form.get('form')
+    gender = request.form.get('gender')
+    industry = request.form.get('industry')
+    salary = int(request.form.get('salary'))
+
+    user = User.get_user_by_user_id(user_id)
+    user.update_user_profile(first_name=first_name, last_name=last_name, headline=headline, location=location, gender=gender,
+                             industry=industry, salary=salary)
+    flash ("Your profile has been updated")
+    return render_template('search.html')
 
 @app.route('/login/authorized')
 def authorized():
