@@ -124,7 +124,7 @@ def authorized():
         if position_info.get('startDate', None):
             position_start_date_month = position_info['startDate']['month']
             position_start_date_year = position_info['startDate']['year']
-            position_start_date = position_start_date_month + " " + position_start_date_year
+            position_start_date = str(position_start_date_month) + " " + str(position_start_date_year)
         if position_info.get('title', None):
             position_title = position_info['title']
 
