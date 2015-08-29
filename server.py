@@ -8,6 +8,8 @@ from twilio import twiml
 from twilio.rest import TwilioRestClient
 from model import connect_to_db, db, User, Position
 
+import scrape_data
+
 
 
 app = Flask(__name__)
@@ -132,6 +134,29 @@ def change_linkedin_query(uri, headers, body):
     return uri, headers, body
 
 linkedin.pre_request = change_linkedin_query
+
+
+@app.route('/processsearch')
+def process_search():
+
+    title = request.args.get('title')
+
+    entire_dict = get_title_and_salaries()
+
+    if title in entire_dict:
+        
+        new_dict = {'title': title,
+                    'men': entire_dict[title][3],
+                    'women': entire_dict[title][5]}
+
+        print new_dict
+
+        return jsonify(new_dict)
+
+
+
+
+
 
 
 if __name__ == '__main__':
