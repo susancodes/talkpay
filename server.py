@@ -36,7 +36,12 @@ linkedin = oauth.remote_app(
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    user_id = session.get('current_user', None)
+    user = None
+    if user_id:
+        user = User.get_user_by_user_id(user_id)
+
+    return render_template('index.html', user=user)
     # if 'linkedin_token' in session:
     #     return render_template('dashboard.html')
     # return redirect(url_for('login'))
@@ -60,12 +65,14 @@ TWILIO_NUMBER = os.environ['TWILIO_NUMBER']
 @app.route('/login')
 def login():
     if 'linkedin_token' in session:
+        print session.get('curent_user', None), "this is current user in session"
         return render_template('dashboard.html')
     return linkedin.authorize(callback=url_for('authorized', _external=True))
 
 @app.route('/logout')
 def logout():
     session.pop('linkedin_token', None)
+    session.pop('current_user', None)
     return render_template("index.html")
 
 @app.route('/login/authorized')
@@ -77,6 +84,7 @@ def authorized():
             request.args['error_description']
         )
     session['linkedin_token'] = (resp['access_token'], '')
+
     me = linkedin.get('people/~:(id,first-name,last-name,headline,positions,location,industry,specialties,public-profile-url)?format=json')
     user_data = me.data
     first_name = user_data.get('firstName', None)
@@ -88,29 +96,39 @@ def authorized():
     if location:
         location_name = location['name']
 
+    check_user = User.get_user_by_linkedin_id(id) #check to see if the user exists already
+    print check_user, "this is check_user"
+    if not check_user:
+        user = User.create(first_name=first_name,
+                    last_name=last_name,
+                    linkedin_id=id,
+                    headline=headline,
+                    industry=industry,
+                    location=location_name
+                    )
+
+    else:
+        user = check_user
+    print user, "this is the user"
+    user_id = user.user_id
+    session['current_user'] = user_id
     positions = user_data.get('positions', None)
+
     if positions and positions.get('values', None):
         position_info = positions.get('values')[0]
+        position_company = None
+        position_start_date = None
+        position_title = None
         if position_info.get('company', None):
             position_company = position_info.get('company', None)['name']
         if position_info.get('startDate', None):
             position_start_date_month = position_info['startDate']['month']
             position_start_date_year = position_info['startDate']['year']
+            position_start_date = position_start_date_month + " " + position_start_date_year
         if position_info.get('title', None):
             position_title = position_info['title']
 
-
-
-    user = User.create(first_name=first_name,
-                last_name=last_name,
-                linkedin_id=id,
-                headline=headline,
-                industry=industry,
-                location=location_name
-                )
-    user_id = user.user_id
-    Position.update_position()
-
+        Position.create(user_id=user_id, company=position_company, start_date=position_start_date, title=position_title)
 
     return render_template('dashboard.html')
 
