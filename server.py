@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from flask_debugtoolbar import DebugToolbarExtension
+from model import connect_to_db, db
 
 import os
 
@@ -13,13 +14,7 @@ app.secret_key = "developHER"
 def homepage():
 	"""Render home page for log-in."""
 
-	return render_template "base.html"
-
-
-
-
-
-
+	return render_template("base.html")
 
 
 

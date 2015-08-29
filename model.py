@@ -6,8 +6,6 @@ db = SQLAlchemy()
 
 ##############################################################################
 # Model definitions
-class User(db.Model):
-    pass
 
 
 
