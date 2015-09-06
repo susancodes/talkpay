@@ -179,7 +179,7 @@ function showGoodNews() {
 
 
 function showBadNews(currentDiff) {
-	$("#chart-result-msg").html("<p>This is a perfect time to sharpen your negotiation skills and ask for a raise!</p>" + 
+	$("#chart-result-msg").html("<p style='font-size: 20'><b>Sharpen your negotiation skills and ask for a raise!</b></p>" + 
 								"<p>You're currently making " + currentDiff + " less than the average men in your industry.<p>" +
 								"<p>Reach out to other women and start #TalkPay.<p>");
 	$("#search-again").fadeIn(3000);
