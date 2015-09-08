@@ -1,17 +1,28 @@
 #TalkPay
 
+Women earn on average $0.80 to every $1 earned by men.
+
+We believe knowledge is power and we want to empower women by arming them with relevent salary information.
+
+TalkPay provides a place to quickly gauge where your current pay or offer stands compared to the average pay for men and women.
+
 ##### LinkedIn DevelopHER 2015 Finalist
 <img src="/static/img/homepage.png" alt="TalkPay Homepage">
 
 
 ---------------------
 
-### Log-In With LinkedIn
+### Step 1: Log-In With LinkedIn
 
 ![image](https://cloud.githubusercontent.com/assets/12265692/9702879/54ab163a-5424-11e5-83b3-a1b5f396109b.png) 
 
 
+### Step 2: Search for Salary Information
+
+![Alt Text](http://g.recordit.co/RuwPqcuFic.gif)
+
 ---------------------
+
 ### Tech Stack & APIs
 
 - Python, Flask, Javascript
